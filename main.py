@@ -3,8 +3,8 @@ from log import log
 import os
 from discord.ext import commands
 
-from voice import Voice
-from add import Add
+from cogs.voice import Voice
+from cogs.add import Add
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"))
 
