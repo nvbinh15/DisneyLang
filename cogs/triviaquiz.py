@@ -2,6 +2,7 @@ import random
 import asyncio
 import requests
 import json
+import language_tool_python
 from discord.ext import commands
 import discord
 
@@ -46,6 +47,19 @@ class Quiz(commands.Cog):
     #         else:
     #             await message.channel.send('Oops. It is actually {}.'.format(answer))
 
+    @commands.command(pass_context=True)
+    async def check(self, ctx, *, message):
+        tool = language_tool_python.LanguageTool('en-US')
+        matches = tool.correct(message)
+        if matches != message:
+            await ctx.send("Correct sentence should be")
+            await ctx.send(matches)
+        else:
+            print("correct already")
+
+
+
+
     @commands.command()
     async def quiz(self, ctx):
         await ctx.send('Answer True or False:')
@@ -69,5 +83,19 @@ class Quiz(commands.Cog):
             await ctx.send('You are right!')
         else:
             await ctx.send('Oops. It is actually {}.'.format(answer))
+    
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if self.bot == message.author:
+            return
+        tool = language_tool_python.LanguageTool('en-US')
+        matches = tool.correct(message.content)
+        reply_text = "Correct sentence should be: " + matches
+        if matches != message.content:
+            await message.channel.send(reply_text, reference=message)
+            await message.add_reaction("🚩")
+        else:
+            print("correct already")
 
 ##ADD MORE FEATURES TO THE ANSWERS
