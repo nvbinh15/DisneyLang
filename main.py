@@ -1,6 +1,7 @@
 import discord
 from log import log
 import os
+from keep_alive import keep_alive
 from discord.ext import commands
 
 from cogs.voice import Voice
@@ -17,5 +18,6 @@ bot.add_cog(Add(bot))
 bot.add_cog(Voice(bot))
 bot.add_cog(Quiz(bot))
 
+keep_alive()
 log()    
 bot.run(os.environ['TOKEN'])
