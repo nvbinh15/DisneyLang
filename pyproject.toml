@@ -8,6 +8,8 @@ authors = ["nvbinh15 <<>>"]
 python = "^3.8"
 Flask = "^2.0.2"
 discord = "^1.7.3"
+language-tool-python = "^2.6.4"
+nltk = "^3.6.7"
 
 [tool.poetry.dev-dependencies]
 
