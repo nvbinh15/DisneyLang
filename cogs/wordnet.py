@@ -37,7 +37,5 @@ class Professor(commands.Cog):
             return
         
         parsed = parse_message(message.content)
-        
-        # await message.delete()
-        await message.channel.send(parsed)
+        await message.channel.send(parsed, reference=message)
     
