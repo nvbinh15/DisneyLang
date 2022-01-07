@@ -11,3 +11,4 @@ class Insult(commands.Cog):
         response = requests.get("https://insult.mattbas.org/api/insult")
         # print(response.json)
         return await ctx.send(response.text, tts=True)
+        

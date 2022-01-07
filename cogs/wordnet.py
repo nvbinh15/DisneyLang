@@ -37,5 +37,8 @@ class Professor(commands.Cog):
             return
         
         parsed = parse_message(message.content)
+        if parsed == message.content:
+            return
+            
         await message.channel.send(parsed, reference=message)
     
