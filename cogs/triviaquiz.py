@@ -87,7 +87,7 @@ class Quiz(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if self.bot == message.author:
+        if self.bot == message.author.bot:
             return
         tool = language_tool_python.LanguageTool('en-US')
         matches = tool.correct(message.content)
