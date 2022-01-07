@@ -8,7 +8,7 @@ class Filter(commands.Cog):
     
     @commands.Cog.listener()
     async def on_message(self, message):
-        if self.bot == message.author:
+        if message.author.bot:
             return
         filtered = self._profanity_filter(message.content)
         if filtered == message.content:
