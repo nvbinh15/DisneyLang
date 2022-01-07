@@ -1,21 +1,19 @@
 import discord
 from log import log
 import os
+from discord.ext import commands
 
-client = discord.Client()
+from voice import Voice
+from add import Add
 
-@client.event
+bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"))
+
+@bot.event
 async def on_ready():
-    print(f"Logged in as {client.user}.")
+    print(f"Logged in as {bot.user} {bot.user.id}")
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
-
+bot.add_cog(Add(bot))
+bot.add_cog(Voice(bot))
 
 log()    
-client.run(os.environ['TOKEN'])
+bot.run(os.environ['TOKEN'])
