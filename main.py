@@ -6,9 +6,9 @@ from discord.ext import commands
 
 from cogs.voice import Voice
 from cogs.add import Add
+from cogs.triviaquiz import Quiz
 from cogs.filter import Filter
 from cogs.wordnet import Professor
-
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"))
 
@@ -16,9 +16,9 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"))
 async def on_ready():
     print(f"Logged in as {bot.user} {bot.user.id}")
 
-
 bot.add_cog(Add(bot))
 bot.add_cog(Voice(bot))
+bot.add_cog(Quiz(bot))
 bot.add_cog(Filter(bot))
 bot.add_cog(Professor(bot))
 
