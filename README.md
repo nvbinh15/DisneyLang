@@ -3,6 +3,8 @@
 A fun and annoying project submitted for HacknRoll 2022.
 It basically censors profanity and replies to the things you said.
 
+Click (here)[https://discord.com/api/oauth2/authorize?client_id=928832278027730954&permissions=8&scope=bot] to add DisneyLang to your Discord server.
+
 ## Setup
 
 - Clone the repo
