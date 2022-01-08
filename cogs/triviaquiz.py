@@ -6,6 +6,16 @@ import language_tool_python
 from discord.ext import commands
 import discord
 
+async def grammarpolice(message):
+    tool = language_tool_python.LanguageTool('en-US')
+    matches = tool.correct(message.content)
+    reply_text = "Correct sentence should be: " + matches
+    if matches != message.content:
+        await message.channel.send(reply_text, reference=message)
+        await message.add_reaction("🚩")
+    else:
+        print("correct already")
+
 def jprint(obj):
     # create a formatted string of the Python JSON object
     text = json.dumps(obj, sort_keys=True, indent=4)
@@ -55,11 +65,4 @@ class Quiz(commands.Cog):
     async def on_message(self, message):
         if message.author.bot:
             return
-        tool = language_tool_python.LanguageTool('en-US')
-        matches = tool.correct(message.content)
-        reply_text = "Correct sentence should be: " + matches
-        if matches != message.content:
-            await message.channel.send(reply_text, reference=message)
-            await message.add_reaction("🚩")
-        else:
-            print("correct already")
+        await grammarpolice(message)
