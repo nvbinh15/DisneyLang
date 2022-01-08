@@ -9,6 +9,5 @@ class Insult(commands.Cog):
     @commands.command()
     async def insult(self, ctx):
         response = requests.get("https://insult.mattbas.org/api/insult")
-        # print(response.json)
         return await ctx.send(response.text, tts=True)
         

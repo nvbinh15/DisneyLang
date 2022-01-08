@@ -18,7 +18,7 @@ async def on_ready():
 
 bot.add_cog(Filter(bot))
 bot.add_cog(Professor(bot))
-# bot.add_cog(Quiz(bot))
+bot.add_cog(Quiz(bot))
 
 keep_alive()
 log()    
