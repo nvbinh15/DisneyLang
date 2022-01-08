@@ -8,14 +8,14 @@ class Filter(commands.Cog):
     
     @commands.Cog.listener()
     async def on_message(self, message):
-        if self.bot == message.author:
+        if message.author.bot:
             return
         filtered = self._profanity_filter(message.content)
         if filtered == message.content:
             return
         await message.delete()
         await message.channel.send(f'Hey you, watch your language')
-        await message.channel.send(f'{message.author.mention} said: "{filtered}"')
+        await message.channel.send(f'{message.author.mention} said: "{filtered}" (╯°□°）╯︵ ┻━┻')
 
     def _profanity_filter(self, msg):
         filtered = requests.get("https://www.purgomalum.com/service/json", params={"text": msg}).json()["result"]
@@ -26,10 +26,5 @@ class Filter(commands.Cog):
                 result += filtered[i]
             else:
                 result += "\*"
-                # i+=1
-                # while filtered[i] == "*":
-                #   print(msg[i])
-                #   result += "w"
-                #   i+=1
             i += 1
         return result
