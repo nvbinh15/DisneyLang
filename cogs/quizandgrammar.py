@@ -28,13 +28,16 @@ class Quiz(commands.Cog):
 
     @commands.command(pass_context=True)
     async def check(self, ctx, *, message):
+        if message.author.bot:
+            return
         tool = language_tool_python.LanguageTool('en-US')
         matches = tool.correct(message)
+        reply_text = "Correct sentence should be: " + matches
         if matches != message:
-            await ctx.send("Correct sentence should be")
-            await ctx.send(matches)
+            await ctx.send(reply_text)
         else:
-            print("correct already")
+            await ctx.send("Correct already!")
+
 
     @commands.command()
     async def quiz(self, ctx):
@@ -51,7 +54,7 @@ class Quiz(commands.Cog):
         await ctx.send(question)
 
         try:
-            guess = await self.bot.wait_for('message', timeout=10.0)
+            guess = await self.bot.wait_for('message', timeout=20.0)
         except asyncio.TimeoutError:
             return await ctx.send('Sorry, you took too long it was {}.'.format(answer))
 
@@ -59,11 +62,4 @@ class Quiz(commands.Cog):
             await ctx.send('You are right!')
         else:
             await ctx.send('Oops. It is actually {}.'.format(answer))
-    
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.author.bot:
-            return
-        if random.randint(0,10) > 8:
-            await grammarpolice(message)
