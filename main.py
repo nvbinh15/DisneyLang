@@ -4,7 +4,7 @@ import os
 from keep_alive import keep_alive
 from discord.ext import commands
 from wn_downloader import wn_download
-from cogs.triviaquiz import Quiz
+from cogs.quizandgrammar import Quiz
 from cogs.filter import Filter
 from cogs.wordnet import Professor
 
