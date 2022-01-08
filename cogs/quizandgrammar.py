@@ -28,8 +28,6 @@ class Quiz(commands.Cog):
 
     @commands.command(pass_context=True)
     async def check(self, ctx, *, message):
-        if message.author.bot:
-            return
         tool = language_tool_python.LanguageTool('en-US')
         matches = tool.correct(message)
         reply_text = "Correct sentence should be: " + matches
