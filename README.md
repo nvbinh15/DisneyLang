@@ -10,7 +10,7 @@ It basically censors profanity and replies to the things you said.
 - Create `.env` file with the following environment variable
 
 ```
-export TOKEN='your_bot_token_goes_here'
+export TOKEN='<your_bot_token_goes_here>'
 ```
 
 - Activate the `.env` file by `$ source .env`
@@ -18,7 +18,7 @@ export TOKEN='your_bot_token_goes_here'
 - Install dependencies (assuming you have `poetry` installed)
 
 ```
-poetry install
+$ poetry install
 ```
 
 - Run `main.py` file
@@ -27,4 +27,5 @@ poetry install
 
 - Censors users' slurs/profanity
 - Rephrasing gone wrong: rephrases your message and make it longer (like how you did for essays)
-- Grammar police: check your grammar/spelling mistakes
+- Grammar police: `!check <your-sentence>`: to check for grammar/spelling mistakes (grammar police may cause a delay of +- 10 seconds)
+- Trivia fun quiz: `!quiz` for a short True/False trivia quiz to play with your friends
