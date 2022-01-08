@@ -65,4 +65,5 @@ class Quiz(commands.Cog):
     async def on_message(self, message):
         if message.author.bot:
             return
-        await grammarpolice(message)
+        if random.randint(0,10) > 8:
+            await grammarpolice(message)
